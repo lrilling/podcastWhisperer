@@ -8,3 +8,5 @@ A cloud application to search, save and collect favorite podcasts with a functio
 
 The frontend application will be written using Vue.js while the backend uses MongoDB as a database. Automatic transcriptions are done using openAI's openly available _Whisper_ model in a python service. Information about podcast episodes, search functionality and links to episodes will be fetched from the Taddy Podcast API, which is free to use for small projects.
 
+# License
+See the [LICENSE.md](./LICENSE.md) file for license rights and limitations (GNU)
