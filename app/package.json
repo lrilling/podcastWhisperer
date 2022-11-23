@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --testPathPattern=src",
+    "build": "npm run test && gulp default"
+  },
   "author": "Lukas Rilling",
   "license": "GPL-3.0",
   "dependencies": {
@@ -19,6 +23,8 @@
     "@babel/preset-env": "^7.20.2",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
+    "jest": "^29.3.1",
+    "jest-cli": "^29.3.1"
   },
   "babel": {
     "presets": ["@babel/env"]
