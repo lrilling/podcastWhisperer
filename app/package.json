@@ -13,5 +13,14 @@
     "mongodb": "4.12",
     "sqlite3": "^5.1.2",
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+  },
+  "babel": {
+    "presets": ["@babel/env"]
     }
 }
