@@ -8,6 +8,8 @@ class Episode {
         this.series = series;
         this.file = file;
         this.transcript = transcript
+
+        this.series.addEpisode(this);
     }
 
     createTranscript() {
