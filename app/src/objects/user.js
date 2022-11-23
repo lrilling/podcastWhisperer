@@ -24,3 +24,5 @@ class User {
         this.following.remove(seriesID);
     }
 }
+
+export default User

@@ -1,9 +1,10 @@
-const express = require("express");
+import express from "express";
+import SQLiteConnector from "./services/dbConnector";
 const app = express();
 const port = 3000;
 
 app.get("/", (req, res) => {
-    res.send("Hello world!");
+    console.log("root accessed");
 });
 
 app.listen(port, () => {

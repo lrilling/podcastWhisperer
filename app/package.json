@@ -1,0 +1,17 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Lukas Rilling",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "express": "^4.18.2",
+    "graphql": "^16.6.0",
+    "graphql-request": "^5.0.0",
+    "gulp-jest": "^4.0.4",
+    "mongodb": "4.12",
+    "sqlite3": "^5.1.2",
+    "uuid": "^9.0.0"
+    }
+}

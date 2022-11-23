@@ -9,3 +9,5 @@ class Series {
         this.episodes.add(episode);
     }
 }
+
+export default Series
