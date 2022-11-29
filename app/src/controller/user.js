@@ -7,10 +7,11 @@ class UserController {
     async createUser(username, name) {
         const existingUser = await userModel.find({ username: username }).exec();
         if (existingUser.length > 0) {
-            console.log("A user with this username already exists!");
+            console.log("A user with this username already exists");
             return;
         }
 
+        console.log("Creating new User...");
         const newUser = new userModel({ username: username, name: name });
         await newUser.save();
 
@@ -23,7 +24,9 @@ class UserController {
         if (!user) {
             console.log(`A user with the username ${username} does not exist!`);
         }
+        return user;
     }
 }
 
-export default new UserController();
+const userController = new UserController();
+exports.userController = userController;
