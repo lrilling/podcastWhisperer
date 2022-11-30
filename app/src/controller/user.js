@@ -7,8 +7,7 @@ class UserController {
     async createUser(username, name) {
         const existingUser = await userModel.find({ username: username }).exec();
         if (existingUser.length > 0) {
-            console.log("A user with this username already exists");
-            return;
+            throw new Error(`User with username ${username} already exists!`);
         }
 
         console.log("Creating new User...");
@@ -19,11 +18,30 @@ class UserController {
     }
 
     async getUser(username) {
-        const user = userModel.find({ username: username });
+        const [user] = await userModel.find({ username: username }).exec();
 
         if (!user) {
-            console.log(`A user with the username ${username} does not exist!`);
+            console.log("User not found!");
         }
+        return user;
+    }
+
+    async getAllUsers() {
+        const users = await userModel.find({}).exec();
+
+        if (!users) {
+            console.log("getting all users failed!");
+        } else if (users.length < 1) {
+            console.log("no users in DB");
+        }
+        return users;
+    }
+
+    async addEpisode(userID, episodeID) {
+        const [user] = await userModel.findOne({ _id: userID }).exec();
+
+        user.saveEpisode(episodeID);
+
         return user;
     }
 }
