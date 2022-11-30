@@ -8,6 +8,7 @@ const port = 3000;
 
 app.get("/", (req, res) => {
     console.log("root accessed");
+    res.send(JSON.stringify({}));
 });
 
 app.get("/users/", async (req, res) => {
@@ -33,7 +34,7 @@ app.listen(port, () => {
 });
 
 async function main() {
-    mongoose.connect("mongodb://localhost:27017/test");
+    mongoose.connect("mongodb://0.0.0.0:27017/test");
     console.log("connected to mongoDB");
 }
 
