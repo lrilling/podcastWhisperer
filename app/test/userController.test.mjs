@@ -1,55 +1,65 @@
 import { userController } from "../dist/controller/user.js"
 import userModel from "../dist/models/userModel.js"
-import assert from "assert";
-import { expect } from "chai";
+import assert, { doesNotMatch } from "assert";
+import chai from "chai";
+import chaiAsPromised from "chai-as-promised";
 import { connect, disconnect, clearDB } from "../testHelper/db.js";
 
-// beforeAll(async () => {
-//     connect();
-//     clearDB();
-// });
-// afterEach(async () => clearDB());
-// afterAll(async () => disconnect());
+const username = "testUser";
+const testName = "Max Mustermann";
 
-// describe("Test user Controller", () => {
-//     this.timeout(5000);
-//     it("Tests creating a user", async (done) => {
-//         const userController = new UserController();
-//         console.log(userController);
-//         const username = "testUsername";
-//         console.log("test");
-//         userController.createUser(username, "Max Mustermann").then(() => {
-//             console.log("result", result);
-//             assert.strictEqual(result.$isNew, true);
-//             done();
-//         })
-//     })
-// });
+let userID = undefined;
 
-// describe("User Controller", function () {
-//     it("should be true", async function () {
-//         console.log("what")
-//         assert.equal(true, false);
-//         // done();
-//     });
-// });
+chai.use(chaiAsPromised);
+const expect = chai.expect;
+
 
 describe("User Controller", function () {
     before(function () {
         connect();
         clearDB();
     });
-    afterEach(function () {
-        clearDB();
-    });
     after(function () {
+        clearDB();
         disconnect();
     });
     it("should create a new user", async function () {
-        const username = "balsdflkajsdf";
-
-        const user = await userController.createUser(username, "Max Mustermann");
+        const user = await userController.createUser(username, testName);
         expect(user.username).to.equal(username);
     });
+
+    it("should not allow a second user with that username", async function () {
+        await expect(userController.createUser(username, "Not Max")).to.be.rejectedWith(Error);
+    })
+
+    it("should find a user using it's username", async function () {
+        const user = await userController.getUser(username);
+
+        userID = user._id;
+        expect(user.name).equal(testName);
+    });
+
+    it("should find all users", async function () {
+        const users = await userController.getAllUsers();
+
+        expect(users).to.be.a('Array');
+    });
+
+    it("should add an episode to user collection", async function () {
+        expect(userController.addEpisode(userID, 12)).to.eventually.have.property("username");
+    })
+
+    it("should only add episodes that actually exist", function () {
+        // TODO
+    })
+
+    it("should be able to favorise series", async function () {
+        await expect(userController.favorizeSeries(userID, 1)).not.to.throw();
+    });
+
+    it("should be possible to delete an episode", async function () {
+        await expect(userController.removeEpisode(userID, 12)).not.to.throw();
+    })
 })
+
 

@@ -1,9 +1,19 @@
 const mongoose = require("mongoose");
+const MongoMemoryServer = require("mongodb-memory-server").MongoMemoryServer;
+
+async function getUri() {
+    const mongod = await MongoMemoryServer.create();
+
+    const uri = mongod.getUri();
+    return uri;
+}
 
 exports.connect = async function () {
-    const uri = "mongodb://localhost:27017/test";
-    await mongoose.connect(uri);
-    console.log("connected to ", uri);
+    const uri = await getUri();
+    console.log(uri);
+    mongoose.connect(uri).then(() => {
+        console.log("connected to mockgoose");
+    })
 }
 
 exports.disconnect = async function () {
