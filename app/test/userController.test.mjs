@@ -49,17 +49,17 @@ describe("User Controller", function () {
         expect(userController.addEpisode(userID, 12)).to.eventually.have.property("username");
     })
 
-    it("should only add episodes that actually exist", function () {
-        // TODO
-    })
+    // it("should only add episodes that actually exist", function () {
+    //     // TODO
+    // })
 
-    it("should be able to favorise series", async function () {
-        await expect(userController.favorizeSeries(userID, 1)).not.to.throw();
-    });
+    // it("should be able to favorise series", async function () {
+    //     await expect(userController.favorizeSeries(userID, 1)).not.to.throw();
+    // });
 
-    it("should be possible to delete an episode", async function () {
-        await expect(userController.removeEpisode(userID, 12)).not.to.throw();
-    })
+    // it("should be possible to delete an episode", async function () {
+    //     await expect(userController.removeEpisode(userID, 12)).not.to.throw();
+    // })
 })
 
 
