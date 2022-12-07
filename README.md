@@ -14,7 +14,14 @@ A cloud application to transcribe podcasts and publish transcripts. Users can ei
 Having this application in the cloud enables different users to access the same podcasts and transcripts and to edit and improve them in collaboration, while the data only has to be stored once. Additionally the automatic transcription using _Whisper_ is so far only available to programers and having it available in a cloud solution makes it usable for many people. The model itself gains with more computational power, which speeds up the usage when executed in more capable servers compared to the execution on consumer processors.
 
 # Tech Stack 📺 💾 📡
-The frontend application will be written using **Vue.js** while the backend uses **MongoDB** as a database. Automatic transcript's are done using openAI's openly available **_Whisper_** model in a python service. Information about podcast episodes, search functionality and RSS feed information will be fetched from the **Taddy Podcast API**, which is free to use for small projects.
+The frontend application will be written using **Vue.js** while the backend uses **MongoDB** as a database. Automatic transcript's are done using openAI's openly available **_Whisper_** model in a python service.
+
+# Milestones
+The milestones or "hitos" are documented in the following pages:
+- [Hito 0: Git Setup](https://github.com/lrilling/podcastWhisperer/blob/main/docs/H0-git_setup.md)
+- [Hito 1: User Stories](https://github.com/lrilling/podcastWhisperer/blob/main/docs/H1-user_stories.md)
+- [Hito 2: Testing](https://github.com/lrilling/podcastWhisperer/blob/main/docs/H2-testing.md)
+- [Hito 3: Testing Container](https://github.com/lrilling/podcastWhisperer/blob/main/docs/H3-testing-container.md)
 
 # License
 See the [LICENSE.md](./LICENSE.md) file for license rights and limitations (GNU)
