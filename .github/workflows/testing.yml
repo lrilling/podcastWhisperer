@@ -7,22 +7,22 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: 
-      image: ghcr.io/lrilling/podcast-whisperer:latest
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
+    # container: 
+    #   image: ghcr.io/lrilling/podcast-whisperer:latest
+    #   credentials:
+    #     username: ${{ github.actor }}
+    #     password: ${{ secrets.github_token }}
     steps:
-     - name: "Run tests"
-       run: "npm test"
-    #   - uses: actions/checkout@v1
-    #   - name: "Install Node"
-    #     uses: actions/setup-node@v1
-    #   - name: "Install Mocha"
-    #     run: npm install -g mocha
-    #   - name: "Install dependencies"
-    #     run: npm install
-    #     working-directory: ./app
-    #   - name: "Run tests"
-    #     run: npm test
-    #     working-directory: ./app
+    - uses: actions/checkout@v1
+    - name: "Install Node"
+      uses: actions/setup-node@v1
+      with:
+        node-version: 18.12.1
+    - name: "Install Mocha"
+      run: npm install -g mocha
+    - name: "Install dependencies"
+      run: npm install
+      working-directory: ./app
+    - name: "Run tests"
+      run: npm test
+      working-directory: ./app
