@@ -14,11 +14,13 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
     steps:
-      - name: "Checkout"
-        uses: actions/checkout@v1
-      - name: "Build app"
-        run: gulp build
-        working-directory: ./app
-      - name: "Start testing"
-        run: npm run test
-        working-directory: ./app
+      - name: "See directory"
+        run: ls
+      # - name: "Checkout"
+      #   uses: actions/checkout@v1
+      # - name: "Build app"
+      #   run: gulp build
+      #   working-directory: ./app
+      # - name: "Start testing"
+      #   run: npm run test
+      #   working-directory: ./app
