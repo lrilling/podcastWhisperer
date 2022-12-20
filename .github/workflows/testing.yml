@@ -2,7 +2,7 @@ name: "Github Action Testing"
 on: [push]
 
 permissions:
-  packages: read/write
+  packages: write
 
 jobs:
   test:
