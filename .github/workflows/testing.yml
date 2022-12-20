@@ -7,8 +7,8 @@ jobs:
     container: 
       image: ghcr.io/lrilling/podcast-whisperer:latest
       credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
+        username: lrilling
+        password: ${{ secrets.GITHUB_TOKEN }}
     steps:
      - name: "Run tests"
        run: "npm test"
