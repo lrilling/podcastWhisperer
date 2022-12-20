@@ -1,6 +1,9 @@
 name: "Github Action Testing"
 on: [push]
 
+permissions:
+  packages: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
