@@ -1,0 +1,16 @@
+name: "Github Action Testing"
+on: [push]
+
+permissions:
+  packages: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: 
+      image: ghcr.io/lrilling/podcast-whisperer:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+    steps:
+    - uses: actions/checkout@v1

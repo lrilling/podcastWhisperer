@@ -1,5 +1,4 @@
 name: "Github Action Testing"
-on: [push]
 
 permissions:
   packages: write
