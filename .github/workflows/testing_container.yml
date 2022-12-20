@@ -13,14 +13,17 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
+      volumes:
+        - ${{ github.workspace}}:/app
     steps:
+      - name: "Checkout"
+        uses: actions/checkout@v1
       - name: "See directory"
-        uses: lrilling/podcast-whisperer
-      # - name: "Checkout"
-      #   uses: actions/checkout@v1
-      # - name: "Build app"
-      #   run: gulp build
-      #   working-directory: ./app
-      # - name: "Start testing"
-      #   run: npm run test
-      #   working-directory: ./app
+        run: ls -l app
+      - name: "Build app"
+        run: gulp build
+        working-directory: ./app
+      - name: "Start testing"
+        run: npm run test
+        working-directory: ./app
+      
