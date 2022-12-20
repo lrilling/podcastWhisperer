@@ -4,8 +4,14 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: ghcr.io/lrilling/podcast-whisperer:latest
-    # steps:
+    container: 
+      image: ghcr.io/lrilling/podcast-whisperer:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+    steps:
+     - name: "Run tests"
+       run: "npm test"
     #   - uses: actions/checkout@v1
     #   - name: "Install Node"
     #     uses: actions/setup-node@v1
