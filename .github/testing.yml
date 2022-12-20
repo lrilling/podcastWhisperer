@@ -1,0 +1,17 @@
+name: "Github Action Testing"
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Install Node"
+        uses: actions/setup-node@v1
+      - name: "Install Mocha"
+        run: npm install -g mocha
+      - name: "CD to app"
+        run: cd ./app
+      - name: "Install dependencies"
+        run: npm install
+      - name: "Run tests"
+        run: npm test
