@@ -8,6 +8,7 @@ jobs:
       run:
         working-directory: /home/runner/work/podcastWhisperer
     steps:
+      - uses: actions/checkout@v1
       - name: "Install Node"
         uses: actions/setup-node@v1
       - name: "Install Mocha"
