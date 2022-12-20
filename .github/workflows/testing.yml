@@ -4,15 +4,16 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: "Install Node"
-        uses: actions/setup-node@v1
-      - name: "Install Mocha"
-        run: npm install -g mocha
-      - name: "Install dependencies"
-        run: npm install
-        working-directory: ./app
-      - name: "Run tests"
-        run: npm test
-        working-directory: ./app
+    container: ghcr.io/lrilling/podcast-whisperer:latest
+    # steps:
+    #   - uses: actions/checkout@v1
+    #   - name: "Install Node"
+    #     uses: actions/setup-node@v1
+    #   - name: "Install Mocha"
+    #     run: npm install -g mocha
+    #   - name: "Install dependencies"
+    #     run: npm install
+    #     working-directory: ./app
+    #   - name: "Run tests"
+    #     run: npm test
+    #     working-directory: ./app
