@@ -15,7 +15,7 @@ jobs:
         password: ${{ secrets.github_token }}
     steps:
       - name: "See directory"
-        uses: lrilling/podcast-whisperer:latest
+        uses: lrilling/podcast-whisperer
       # - name: "Checkout"
       #   uses: actions/checkout@v1
       # - name: "Build app"
