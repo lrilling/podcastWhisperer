@@ -8,6 +8,5 @@ install:
   - npm install
 
 script: 
-  - cd app
   - gulp build
   - npm test
