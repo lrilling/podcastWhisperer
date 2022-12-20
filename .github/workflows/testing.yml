@@ -2,10 +2,35 @@ name: "Github Action Testing"
 on: [push]
 
 permissions:
+  contents: read
   packages: write
 
 jobs:
   test:
+    runs-on: ubuntu-latest
+    container: 
+      image: ghcr.io/lrilling/podcast-whisperer:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+      volumes:
+        - ${{ github.workspace}}:/app
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v1
+      - name: "See directory"
+        run: ls -l app
+      - name: "Install dependencies"
+        run: npm install
+        working-directory: ./app
+      - name: "Build app"
+        run: gulp build
+        working-directory: ./app
+      - name: "Start testing"
+        run: npm run test
+        working-directory: ./app
+  
+  test-without-container:
     runs-on: ubuntu-latest
     # container: 
     #   image: ghcr.io/lrilling/podcast-whisperer:latest
@@ -29,3 +54,4 @@ jobs:
     - name: "Run tests"
       run: npm test
       working-directory: ./app
+      
