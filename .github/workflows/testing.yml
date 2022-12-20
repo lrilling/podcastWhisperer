@@ -24,7 +24,7 @@ jobs:
       run: npm install
       working-directory: ./app
     - name: "Build project"
-      run: gulp default
+      run: gulp build
       working-directory: ./app
     - name: "Run tests"
       run: npm test
