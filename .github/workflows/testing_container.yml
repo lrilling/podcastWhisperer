@@ -15,7 +15,6 @@ jobs:
         password: ${{ secrets.github_token }}
     steps:
       - name: "See directory"
-        run: ls
         uses: ghcr.io/lrilling/podcast-whisperer:latest
       # - name: "Checkout"
       #   uses: actions/checkout@v1
