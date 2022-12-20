@@ -1,7 +1,7 @@
 lanugage: node_js
 
 node_js:
-  - 18
+  - 17
 
 install:
   - cd app
