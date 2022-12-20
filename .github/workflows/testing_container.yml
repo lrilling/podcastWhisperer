@@ -16,6 +16,9 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v1
+      - name: "Build app"
+        run: gulp build
+        working-directory: ./app
       - name: "Start testing"
         run: npm run test
         working-directory: ./app
