@@ -9,6 +9,8 @@ COPY ./app .
 
 RUN npm install -g gulp
 
+RUN npm install -g mocha
+
 RUN npm install
 
 RUN gulp build
