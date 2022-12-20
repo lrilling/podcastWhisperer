@@ -5,7 +5,7 @@ services:
 
 before_install:
   - docker pull lrilling/podcast-whisperer
-  - docker run -v ./app:/app lrilling/podcast-whisperer
+  - docker run -v /app:/app lrilling/podcast-whisperer
   - docker ps
 
 
