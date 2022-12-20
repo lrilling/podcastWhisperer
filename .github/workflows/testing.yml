@@ -4,6 +4,9 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
     steps:
       - name: "Install Node"
         uses: actions/setup-node@v1
