@@ -1,0 +1,1 @@
+The definition of two versions of CI is described in the [CI](../CI.md) documentation.

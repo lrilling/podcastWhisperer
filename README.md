@@ -16,12 +16,19 @@ Having this application in the cloud enables different users to access the same 
 # Tech Stack 📺 💾 📡
 The frontend application will be written using **Vue.js** while the backend uses **MongoDB** as a database. Automatic transcript's are done using openAI's openly available **_Whisper_** model in a python service.
 
+## Testing
+Testing is performed using [Mocha](https://mochajs.org/), the setup is documented in [testing](docs/testing.md). Tests are located under [`app/test`](app/test/). The tests are also used in the CI solutions using github actions or Travis, as explained in [CI](docs/CI.md).
+
+## Building
+Since some parts of the app are written using modules and ES6 syntax for backwards compatibility the app is build using *babel* as a compiler and *gulp* as a task runner, as described in [taskRunner](docs/taskRunner.md).
+
 # Milestones
 The milestones or "hitos" are documented in the following pages:
 - [Hito 0: Git Setup](https://github.com/lrilling/podcastWhisperer/blob/main/docs/H0-git_setup.md)
 - [Hito 1: User Stories](https://github.com/lrilling/podcastWhisperer/blob/main/docs/H1-user_stories.md)
 - [Hito 2: Testing](https://github.com/lrilling/podcastWhisperer/blob/main/docs/H2-testing.md)
 - [Hito 3: Testing Container](https://github.com/lrilling/podcastWhisperer/blob/main/docs/H3-testing-container.md)
+- [Hito 4: Continuous Integration](docs/hitos/H4-CI.md)
 
 # License
 See the [LICENSE.md](./LICENSE.md) file for license rights and limitations (GNU)
