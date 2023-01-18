@@ -28,25 +28,90 @@ app.get("/", (req, res) => {
     res.send(JSON.stringify({}));
 });
 
+/* USERS */
+
 app.get("/users/", async (req, res) => {
-    const users = await userModel.find({}).exec();
+    const users = await userController.getAllUsers()
     console.log(users);
     res.send(JSON.stringify(users));
 });
 
+app.post("/users/", async (req, res) => {
+    if (req.body.username != undefined && req.body.name != undefined) {
+        const newUser = await userController.createUser(req.body.username, req.body.name);
+        newUser.save();
+        res.send(newUser._id);
+    } else {
+        res.send("No username or name given!");
+    }
+});
+
 app.get("/users/:userId", async (req, res) => {
-    const user = await userModel.find({ _id: req.params.userId });
-    console.log(user);
+    const user = await userController.getUserById(req.params.userId);
+
     res.send(JSON.stringify(user));
 });
 
-app.post("/users/", (req, res) => {
-    const newUser = new userModel({ username: "TestUser1", name: "Max Mustermann" });
-    newUser.save();
-    res.send(newUser._id);
+app.delete("/users/:userId", async (req, res) => {
+    const deleted = await userController.deleteUserById(req.params.userId);
+
+    res.send(deleted);
+});
+
+app.get("/user/:userId/following", async (req, res) => {
+    const followingSeries = await userController.getFollowedSeries(req.params.userId);
+
+    res.send(JSON.stringify(followingSeries));
+});
+
+app.post("/user/:userId/following", async (req, res) => {
+    const user = await userController.followSeries(req.params.userId, req.body.seriesId);
+
+    res.send(JSON.stringify(user.following));
 })
 
-app.listen(port, () => {
+/* SERIES */
+
+app.get("/series", async (req, res) => {
+    const series = await seriesController.getAllSeries();
+
+    res.send(JSON.stringify(series));
+});
+
+app.post("/series", async (req, res) => {
+    const series = await seriesController.createSeries(req.body.name);
+
+    res.send(series._id);
+});
+
+app.get("/series/:seriesId", async (req, res) => {
+    const series = await seriesController.getSeriesById(req.params.seriesId);
+
+    res.send(JSON.stringify(series));
+});
+
+app.delete("/series/:seriesId", async (req, res) => {
+    const deleted = await seriesController.deleteSeriesById(req.params.seriesId);
+
+    res.send(deleted);
+});
+
+app.get("/series/:seriesId/episodes", async (req, res) => {
+    const episodes = await seriesController.getAllEpisodesBySeries(req.params.seriesId);
+
+    res.send(JSON.stringify(episodes));
+});
+
+app.post("/series/:seriesId/episodes", async (req, res) => {
+    let episode;
+    if (req.body.date != undefined) {
+        episode = await seriesController.addEpisode(req.params.seriesId, req.body.name, req.body.url, reg.body.date);
+    } else {
+        episode = await seriesController.addEpisode(req.params.seriesId, req.body.name, req.body.url);
+    }
+
+    res.send(episode._id);
+});
 
 
 
