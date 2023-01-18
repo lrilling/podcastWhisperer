@@ -1,10 +1,27 @@
 import express from "express";
 import mongoose from "mongoose";
-import { userModel } from "./models/userModel";
+import bodyParser from "body-parser";
+import { async, userController } from "../dist/controller/user";
+import { seriesController } from "../dist/controller/series";
+import { MongoMemoryServer } from "mongodb-memory-server";
+
+let mongoUri;
+if (process.env.NODE_ENV == "testing") {
+    // when testing using ../test/rest.test.mjs
+    const mongod = MongoMemoryServer.create();
+    mongoUri = mongod.getUri();
+} else if (process.env.NODE_ENV == "container") {
+    // when running in a container
+    mongoUri = "mongodb://db:27017/test";
+} else {
+    // when running locally - make sure to have a mongoDB running!
+    mongoUri = "mongodb://localhost:27017/test"
+}
 
 const app = express();
-const port = 3000;
+const port = process.env.port || 3000;
 
+app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
     console.log("root accessed");
@@ -30,12 +47,21 @@ app.post("/users/", (req, res) => {
 })
 
 app.listen(port, () => {
+
+
+
+const exportApp = app.listen(port, () => {
     console.log("Listening on port ", port);
 });
 
 async function main() {
-    mongoose.connect("mongodb://0.0.0.0:27017/test");
+    await mongoose.connect(mongoUri);
     console.log("connected to mongoDB");
 }
 
-main().catch((err) => console.log(err));
+if (process.env.NODE_ENV != "testing") {
+    main().catch((err) => console.log(err));
+}
+
+
+export default exportApp; // for testing
