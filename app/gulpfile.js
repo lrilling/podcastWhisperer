@@ -25,6 +25,13 @@ gulp.task("build", function () {
         .pipe(gulp.dest("./dist/"));
 });
 
+gulp.task("set-docker-env", function (cb) {
+    process.env.mongoUri = "mongodb://db:27017/db";
+    cb();
+})
+
+gulp.task("build-for-docker", gulp.series("set-docker-env", "build"));
+
 gulp.task("docker-build", function () {
     exec("docker build -t podcast-whisperer .", (err) => {
         console.log(err);

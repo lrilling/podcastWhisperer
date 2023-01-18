@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit",
-    "build": "npm run test && gulp default"
+    "test": "mocha --require ./test/hooks.mjs --exit",
+    "build": "gulp build",
+    "build-for-docker": "gulp build-for-docker",
+    "start": "gulp build && node ./dist/index.js"
   },
   "author": "Lukas Rilling",
   "license": "GPL-3.0",
   "dependencies": {
     "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.3.0",
     "express": "^4.18.2",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
