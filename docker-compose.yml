@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    image: mongo:latest
+    volumes:
+      - /data/db
+    ports:
+     - 27017:27017
+
+  backend:
+    image: node:latest
+    # build: 
+    #   context: ./app
+    ports:
+      - 3000:3000
+    volumes:
+      - ./app:/app
+    entrypoint: ["node", "/app/dist/index.js"]
+    environment:
+      - NODE_ENV=container
+    depends_on:
+      - db
+    
