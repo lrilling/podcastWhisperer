@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     username: String,
     name: String,
-    episodes: Array,
-    following: Array
+    episodes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Episode" }],
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: "Series" }]
 }, {
     methods: {
         saveEpisode(episodeID) {

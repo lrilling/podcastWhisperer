@@ -5,7 +5,7 @@ const episodeSchema = new mongoose.Schema({
     series: { type: mongoose.Schema.Types.ObjectId, ref: "Series" },
     number: Number,
     date: Date,
-    filePath: String
+    url: String
 });
 
 const episodeModel = new mongoose.model("Episode", episodeSchema);

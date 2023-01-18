@@ -1,22 +1,30 @@
-import uuid from "uuid";
-import Transcript from "./transcript";
+import episodeModel from "../models/episodeModel"
+
 
 class Episode {
-    constructor(id, name, series, file, transcript = null) {
-        this.id = id;
-        this.name = name;
-        this.series = series;
-        this.file = file;
-        this.transcript = transcript
+    constructor() {
 
-        this.series.addEpisode(this);
     }
 
-    createTranscript() {
-        if (this.transcript != null) {
-            this.transcript = new Transcript(uuid(), this.id)
-        }
+    async createEpisode(name, series, number, url, date = new Date()) {
+        const newEpisode = new episodeModel({ name: name, series: seriesID, url: url, date: date, number: series.numOfEpisodes + 1 });
+        newEpisode.save();
+
+        return newEpisode;
     }
+
+    async getEpisodeByName(name) {
+        const episode = await episodeModel.findOne({ name: name }).exec();
+
+        return episode;
+    }
+
+    async getEpisodeById(id) {
+        const episode = await episodeModel.findOne({ _id: id }).exec();
+
+        return episode;
+    }
+
 }
 
 export default Episode
