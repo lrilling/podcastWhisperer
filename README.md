@@ -29,6 +29,7 @@ The milestones or "hitos" are documented in the following pages:
 - [Hito 2: Testing](https://github.com/lrilling/podcastWhisperer/blob/main/docs/H2-testing.md)
 - [Hito 3: Testing Container](https://github.com/lrilling/podcastWhisperer/blob/main/docs/H3-testing-container.md)
 - [Hito 4: Continuous Integration](docs/hitos/H4-CI.md)
+- [Hito 5: Development and Testing of microservice](docs/hitos/H5-microservice.md)
 
 # License
 See the [LICENSE.md](./LICENSE.md) file for license rights and limitations (GNU)
