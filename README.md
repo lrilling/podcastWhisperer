@@ -14,7 +14,7 @@ A cloud application to transcribe podcasts and publish transcripts. Users can ei
 Having this application in the cloud enables different users to access the same podcasts and transcripts and to edit and improve them in collaboration, while the data only has to be stored once. Additionally the automatic transcription using _Whisper_ is so far only available to programers and having it available in a cloud solution makes it usable for many people. The model itself gains with more computational power, which speeds up the usage when executed in more capable servers compared to the execution on consumer processors.
 
 # Tech Stack 📺 💾 📡
-The frontend application will be written using **Vue.js** while the backend uses **MongoDB** as a database. Automatic transcript's are done using openAI's openly available **_Whisper_** model in a python service.
+The backend service is written using Javascript in ES6, which is compiled using gulp. The database runs **MongoDB** using **mongoose** in the service code to define the database schema and documents. 
 
 ## Testing
 Testing is performed using [Mocha](https://mochajs.org/), the setup is documented in [testing](docs/testing.md). Tests are located under [`app/test`](app/test/). The tests are also used in the CI solutions using github actions or Travis, as explained in [CI](docs/CI.md).
@@ -30,6 +30,7 @@ The milestones or "hitos" are documented in the following pages:
 - [Hito 3: Testing Container](https://github.com/lrilling/podcastWhisperer/blob/main/docs/H3-testing-container.md)
 - [Hito 4: Continuous Integration](docs/hitos/H4-CI.md)
 - [Hito 5: Development and Testing of microservice](docs/hitos/H5-microservice.md)
+- [Hito 6: Service Composition](docs/hitos/H6-docker-compose.md)
 
 # License
 See the [LICENSE.md](./LICENSE.md) file for license rights and limitations (GNU)
